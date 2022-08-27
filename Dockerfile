@@ -1,5 +1,5 @@
 FROM node:15-alpine
-LABEL maintainer="Olga Lyudchik helga.lyudchik@gmail.com"
+LABEL maintainer="ravali121@gmail.com"
 
 WORKDIR /usr/src/weather-app
 

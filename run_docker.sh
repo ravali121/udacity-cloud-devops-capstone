@@ -7,7 +7,7 @@ docker build -t weather-app .
 docker image ls | grep weather-app
 
 # Start a docker container to run the app
-docker run --name weather-app --env-file .env -p 8080:3000 -d weather-app
+docker run --name weather-app --env-file .env -p 3000:3000 -d weather-app
 
 # Check docker logs if the app has been started
 docker logs -f weather-app

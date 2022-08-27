@@ -20,20 +20,9 @@ spec:
         app: weather-app
     spec:
       containers:
-        - image: ravali121/weather-app:latest
-          name: weather-app
+        - name: weather-app
+          image: ravali121/weather-app:latest
           imagePullPolicy: Always
-          env:
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: weather-app-config
-                  key: port
-            - name: API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: weather-app-secret
-                  key: api_key
           ports:
             - name: api
               containerPort: 3000
