@@ -29,6 +29,21 @@ jobs:
       - run:
           command: npm run lint
           working_directory: weather-app
+
+
+  build-and-push-docker-image:
+    steps:
+      - checkout
+      - run:
+          name: Building docker image
+          command: docker build -t weather-app .
+      - run:
+          name: Push docker image
+          command: |
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASS"
+            docker tag weather-app:latest ravali121/weather-app
+            docker push ravali121/weather-app
+
 workflows:
   version: 2
   build-and-test:
@@ -37,3 +52,6 @@ workflows:
       - lint:
           requires:
             - build
+      - build-and-push-docker-image:
+          requires:
+            - lint
