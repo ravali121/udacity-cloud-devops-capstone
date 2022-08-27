@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
     res.render('pages/index', { weather: null, error: null });
-})
+});
 
 app.post('/', function (req, res) {
     const city = req.body.city;
