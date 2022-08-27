@@ -5,23 +5,24 @@ jobs:
       - image: 'circleci/node:13.8.0'
     steps:
       - checkout
-      # - run:
-      #     command: echo "Building weather-app"
-      #     working_directory: weather-app
-      # - run:
-      #     command: npm --version
-      #     working_directory: weather-app
-      # - run:
-      #     command: node --version
-      #     working_directory: weather-app
       - run:
-          command: npm install
+          command: echo "Building weather-app"
           working_directory: weather-app
+      - run:
+          command: npm --version
+          working_directory: weather-app
+      - run:
+          command: node --version
+          working_directory: weather-app
+
   lint:
     docker:
       - image: 'circleci/node:13.8.0'
     steps:
       - checkout
+      - run:
+          command: npm install
+          working_directory: weather-app
       - run:
           command: echo "Linting weather-app"
           working_directory: weather-app
