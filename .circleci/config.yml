@@ -1,0 +1,36 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: 'cimg/base:2022.08'
+    steps:
+      - run:
+          command: echo "Building weather-app"
+          working_directory: weather-app
+      - run:
+          command: npm --version
+          working_directory: weather-app
+      - run:
+          command: node --version
+          working_directory: weather-app
+      - run:
+          command: npm install
+          working_directory: weather-app
+  lint:
+    docker:
+      - image: 'cimg/base:2022.08'
+    steps:
+      - run:
+          command: echo "Linting weather-app"
+          working_directory: weather-app
+      - run:
+          command: npm run lint
+          working_directory: weather-app
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - lint:
+          requires:
+            - build
