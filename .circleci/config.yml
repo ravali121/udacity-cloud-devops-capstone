@@ -50,7 +50,7 @@ jobs:
 
   deploy-to-aws-eks:
     docker:
-      -image: amazon/aws-cli
+      -image: 'amazon/aws-cli'
     steps:
       - checkout
       - run:
