@@ -67,7 +67,7 @@ jobs:
       - run:
           name: "deploy docker image"
           command: |
-            kubectl --version
+            kubectl version
             kubectl config use-context arn:aws:eks:us-west-2:468045334408:cluster/weather-app
             kubectl apply -f deployment/namespace.yml
             kubectl apply -f deployment/deployment.yml
