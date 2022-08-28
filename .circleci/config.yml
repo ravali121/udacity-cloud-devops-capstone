@@ -1,6 +1,9 @@
 version: 2.1
 orbs:
-  aws-eks: circleci/aws-eks@0.2.0
+  aws-cli: circleci/aws-cli@1.2.1
+  aws-eks: circleci/aws-eks@1.0.3
+  kubernetes: circleci/kubernetes@0.4.0
+
 
 jobs:
   build:
@@ -56,9 +59,15 @@ jobs:
       - image: 'amazon/aws-cli'
     steps:
       - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: weather-app
+          aws-region: us-west-2
+          install-kubectl: true
+          verbose: true
       - run:
           name: "deploy docker image"
           command: |
+            kubectl --version
             kubectl config use-context arn:aws:eks:us-west-2:468045334408:cluster/weather-app
             kubectl apply -f deployment/namespace.yml
             kubectl apply -f deployment/deployment.yml
