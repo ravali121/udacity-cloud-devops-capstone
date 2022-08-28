@@ -90,6 +90,6 @@ workflows:
       # - build-and-push-docker-image:
       #     requires:
       #       - lint
-      - deploy-to-aws-eks:
-          requires:
-            - build-and-push-docker-image
+      - deploy-to-aws-eks
+          # requires:
+          #   - build-and-push-docker-image
