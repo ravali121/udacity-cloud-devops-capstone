@@ -83,13 +83,13 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      # - build
-      # - lint:
-      #     requires:
-      #       - build
-      # - build-and-push-docker-image:
-      #     requires:
-      #       - lint
+      - build
+      - lint:
+          requires:
+            - build
+      - build-and-push-docker-image:
+          requires:
+            - lint
       - deploy-to-aws-eks
-          # requires:
-          #   - build-and-push-docker-image
+          requires:
+            - build-and-push-docker-image
